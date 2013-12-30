@@ -1,0 +1,383 @@
+diff -ru DBD-Pg-1.31/Pg.pm DBD-Pg-1.31.new/Pg.pm
+*** DBD-Pg-1.31/Pg.pm	2003-12-08 11:17:20.000000000 -0600
+--- DBD-Pg-1.31.new/Pg.pm	2003-12-08 14:44:33.000000000 -0600
+***************
+*** 88,97 ****
+  	## Version 7.3 and up uses schemas, so add a "pg_catalog." to system tables
+  	sub _pg_use_catalog {
+  		my $dbh = shift;
+! 		return $dbh->{pg_use_catalog} if defined $dbh->{pg_use_catalog};
+  		my $version = DBD::Pg::_pg_server_version($dbh);
+! 		$dbh->{pg_use_catalog} = DBD::Pg::_pg_check_version(7.3, $version) ? "pg_catalog." : "";
+! 		return $dbh->{pg_use_catalog};
+  	}
+  
+  	1;
+--- 88,97 ----
+  	## Version 7.3 and up uses schemas, so add a "pg_catalog." to system tables
+  	sub _pg_use_catalog {
+  		my $dbh = shift;
+! 		return $dbh->{private_dbdpg}{pg_use_catalog} if defined $dbh->{private_dbdpg}{pg_use_catalog};
+  		my $version = DBD::Pg::_pg_server_version($dbh);
+! 		$dbh->{private_dbdpg}{pg_use_catalog} = DBD::Pg::_pg_check_version(7.3, $version) ? "pg_catalog." : "";
+! 		return $dbh->{private_dbdpg}{pg_use_catalog};
+  	}
+  
+  	1;
+diff -ru DBD-Pg-1.31/Pg.pm~ DBD-Pg-1.31.new/Pg.pm~
+*** DBD-Pg-1.31/Pg.pm~	2003-12-08 11:17:20.000000000 -0600
+--- DBD-Pg-1.31.new/Pg.pm~	2003-12-08 14:40:15.000000000 -0600
+***************
+*** 88,96 ****
+  	## Version 7.3 and up uses schemas, so add a "pg_catalog." to system tables
+  	sub _pg_use_catalog {
+  		my $dbh = shift;
+! 		return $dbh->{pg_use_catalog} if defined $dbh->{pg_use_catalog};
+  		my $version = DBD::Pg::_pg_server_version($dbh);
+! 		$dbh->{pg_use_catalog} = DBD::Pg::_pg_check_version(7.3, $version) ? "pg_catalog." : "";
+  		return $dbh->{pg_use_catalog};
+  	}
+  
+--- 88,96 ----
+  	## Version 7.3 and up uses schemas, so add a "pg_catalog." to system tables
+  	sub _pg_use_catalog {
+  		my $dbh = shift;
+! 		return $dbh->{private_dbdpg}{pg_use_catalog} if defined $dbh->{private_dbdpg}{pg_use_catalog};
+  		my $version = DBD::Pg::_pg_server_version($dbh);
+! 		$dbh->{private_dbdpg}{pg_use_catalog} = DBD::Pg::_pg_check_version(7.3, $version) ? "pg_catalog." : "";
+  		return $dbh->{pg_use_catalog};
+  	}
+  
+diff -ru DBD-Pg-1.31/blib/lib/DBD/Pg.pm DBD-Pg-1.31.new/blib/lib/DBD/Pg.pm
+*** DBD-Pg-1.31/blib/lib/DBD/Pg.pm	2003-12-08 14:40:01.000000000 -0600
+--- DBD-Pg-1.31.new/blib/lib/DBD/Pg.pm	2003-12-08 14:44:33.000000000 -0600
+***************
+*** 88,97 ****
+  	## Version 7.3 and up uses schemas, so add a "pg_catalog." to system tables
+  	sub _pg_use_catalog {
+  		my $dbh = shift;
+! 		return $dbh->{pg_use_catalog} if defined $dbh->{private_dbdpg}{pg_use_catalog};
+  		my $version = DBD::Pg::_pg_server_version($dbh);
+! 		$dbh->{pg_use_catalog} = DBD::Pg::_pg_check_version(7.3, $version) ? "pg_catalog." : "";
+! 		return $dbh->{pg_use_catalog};
+  	}
+  
+  	1;
+--- 88,97 ----
+  	## Version 7.3 and up uses schemas, so add a "pg_catalog." to system tables
+  	sub _pg_use_catalog {
+  		my $dbh = shift;
+! 		return $dbh->{private_dbdpg}{pg_use_catalog} if defined $dbh->{private_dbdpg}{pg_use_catalog};
+  		my $version = DBD::Pg::_pg_server_version($dbh);
+! 		$dbh->{private_dbdpg}{pg_use_catalog} = DBD::Pg::_pg_check_version(7.3, $version) ? "pg_catalog." : "";
+! 		return $dbh->{private_dbdpg}{pg_use_catalog};
+  	}
+  
+  	1;
+diff -ru DBD-Pg-1.31/t/00basic.t DBD-Pg-1.31.new/t/00basic.t
+*** DBD-Pg-1.31/t/00basic.t	2003-12-08 14:42:16.000000000 -0600
+--- DBD-Pg-1.31.new/t/00basic.t	2003-12-08 14:42:29.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use Test::More tests => 3;
+  BEGIN {
+      use_ok('DBI');
+diff -ru DBD-Pg-1.31/t/01connect.t DBD-Pg-1.31.new/t/01connect.t
+*** DBD-Pg-1.31/t/01connect.t	2003-12-08 14:42:19.000000000 -0600
+--- DBD-Pg-1.31.new/t/01connect.t	2003-12-08 14:42:33.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+diff -ru DBD-Pg-1.31/t/01constants.t DBD-Pg-1.31.new/t/01constants.t
+*** DBD-Pg-1.31/t/01constants.t	2003-12-08 14:42:13.000000000 -0600
+--- DBD-Pg-1.31.new/t/01constants.t	2003-12-08 14:42:35.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use Test::More tests => 20;
+  
+diff -ru DBD-Pg-1.31/t/01pg_server_version.t DBD-Pg-1.31.new/t/01pg_server_version.t
+*** DBD-Pg-1.31/t/01pg_server_version.t	2003-12-08 14:42:12.000000000 -0600
+--- DBD-Pg-1.31.new/t/01pg_server_version.t	2003-12-08 14:42:39.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;                                                                                                 
+  use DBI;                                                                                                    
+  use Test::More;                                                                                             
+***************
+*** 14,16 ****
+--- 16,19 ----
+  ok(defined $dbh, 'connect');
+  
+  ok(defined DBD::Pg::_pg_server_version($dbh), 'version is defined');    
++ 
+diff -ru DBD-Pg-1.31/t/01pg_server_version.t~ DBD-Pg-1.31.new/t/01pg_server_version.t~
+*** DBD-Pg-1.31/t/01pg_server_version.t~	2003-11-10 21:25:02.000000000 -0600
+--- DBD-Pg-1.31.new/t/01pg_server_version.t~	2003-12-08 14:40:15.000000000 -0600
+***************
+*** 14,16 ****
+--- 14,17 ----
+  ok(defined $dbh, 'connect');
+  
+  ok(defined DBD::Pg::_pg_server_version($dbh), 'version is defined');    
++ 
+diff -ru DBD-Pg-1.31/t/01setup.t DBD-Pg-1.31.new/t/01setup.t
+*** DBD-Pg-1.31/t/01setup.t	2003-12-08 11:17:20.000000000 -0600
+--- DBD-Pg-1.31.new/t/01setup.t	2003-12-08 14:42:41.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 01setup.t~
+diff -ru DBD-Pg-1.31/t/02prepare.t DBD-Pg-1.31.new/t/02prepare.t
+*** DBD-Pg-1.31/t/02prepare.t	2003-10-31 10:39:16.000000000 -0600
+--- DBD-Pg-1.31.new/t/02prepare.t	2003-12-08 14:42:43.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 02prepare.t~
+diff -ru DBD-Pg-1.31/t/03bind.t DBD-Pg-1.31.new/t/03bind.t
+*** DBD-Pg-1.31/t/03bind.t	2003-10-31 10:39:25.000000000 -0600
+--- DBD-Pg-1.31.new/t/03bind.t	2003-12-08 14:42:45.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 03bind.t~
+diff -ru DBD-Pg-1.31/t/04execute.t DBD-Pg-1.31.new/t/04execute.t
+*** DBD-Pg-1.31/t/04execute.t	2003-10-31 10:39:35.000000000 -0600
+--- DBD-Pg-1.31.new/t/04execute.t	2003-12-08 14:42:48.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 04execute.t~
+diff -ru DBD-Pg-1.31/t/04rows.t DBD-Pg-1.31.new/t/04rows.t
+*** DBD-Pg-1.31/t/04rows.t	2003-10-31 10:39:42.000000000 -0600
+--- DBD-Pg-1.31.new/t/04rows.t	2003-12-08 14:42:50.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 04rows.t~
+diff -ru DBD-Pg-1.31/t/05fetch.t DBD-Pg-1.31.new/t/05fetch.t
+*** DBD-Pg-1.31/t/05fetch.t	2003-10-31 10:39:51.000000000 -0600
+--- DBD-Pg-1.31.new/t/05fetch.t	2003-12-08 14:42:52.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 05fetch.t~
+diff -ru DBD-Pg-1.31/t/06disconnect.t DBD-Pg-1.31.new/t/06disconnect.t
+*** DBD-Pg-1.31/t/06disconnect.t	2003-10-31 10:40:01.000000000 -0600
+--- DBD-Pg-1.31.new/t/06disconnect.t	2003-12-08 14:42:55.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 06disconnect.t~
+diff -ru DBD-Pg-1.31/t/07reuse.t DBD-Pg-1.31.new/t/07reuse.t
+*** DBD-Pg-1.31/t/07reuse.t	2003-10-31 10:40:08.000000000 -0600
+--- DBD-Pg-1.31.new/t/07reuse.t	2003-12-08 14:42:57.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 07reuse.t~
+diff -ru DBD-Pg-1.31/t/08txn.t DBD-Pg-1.31.new/t/08txn.t
+*** DBD-Pg-1.31/t/08txn.t	2003-10-31 10:40:17.000000000 -0600
+--- DBD-Pg-1.31.new/t/08txn.t	2003-12-08 14:43:00.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 08txn.t~
+diff -ru DBD-Pg-1.31/t/09autocommit.t DBD-Pg-1.31.new/t/09autocommit.t
+*** DBD-Pg-1.31/t/09autocommit.t	2003-10-31 10:40:25.000000000 -0600
+--- DBD-Pg-1.31.new/t/09autocommit.t	2003-12-08 14:43:01.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 09autocommit.t~
+diff -ru DBD-Pg-1.31/t/10chopblanks.t DBD-Pg-1.31.new/t/10chopblanks.t
+*** DBD-Pg-1.31/t/10chopblanks.t	2003-10-31 10:40:34.000000000 -0600
+--- DBD-Pg-1.31.new/t/10chopblanks.t	2003-12-08 14:43:03.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 10chopblanks.t~
+diff -ru DBD-Pg-1.31/t/11quoting.t DBD-Pg-1.31.new/t/11quoting.t
+*** DBD-Pg-1.31/t/11quoting.t	2003-10-31 10:40:43.000000000 -0600
+--- DBD-Pg-1.31.new/t/11quoting.t	2003-12-08 14:43:05.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 11quoting.t~
+diff -ru DBD-Pg-1.31/t/12placeholders.t DBD-Pg-1.31.new/t/12placeholders.t
+*** DBD-Pg-1.31/t/12placeholders.t	2003-10-31 10:44:06.000000000 -0600
+--- DBD-Pg-1.31.new/t/12placeholders.t	2003-12-08 14:43:07.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 12placeholders.t~
+diff -ru DBD-Pg-1.31/t/13pgtype.t DBD-Pg-1.31.new/t/13pgtype.t
+*** DBD-Pg-1.31/t/13pgtype.t	2003-10-31 10:44:12.000000000 -0600
+--- DBD-Pg-1.31.new/t/13pgtype.t	2003-12-08 14:43:09.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 13pgtype.t~
+diff -ru DBD-Pg-1.31/t/16pgbooltf.t DBD-Pg-1.31.new/t/16pgbooltf.t
+*** DBD-Pg-1.31/t/16pgbooltf.t	2003-11-17 15:01:05.000000000 -0600
+--- DBD-Pg-1.31.new/t/16pgbooltf.t	2003-12-08 14:43:35.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 16pgbooltf.t~
+diff -ru DBD-Pg-1.31/t/17arrays.t DBD-Pg-1.31.new/t/17arrays.t
+*** DBD-Pg-1.31/t/17arrays.t	2003-10-31 10:42:15.000000000 -0600
+--- DBD-Pg-1.31.new/t/17arrays.t	2003-12-08 14:43:37.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 17arrays.t~
+diff -ru DBD-Pg-1.31/t/18data_sources.t~ DBD-Pg-1.31.new/t/18data_sources.t~
+*** DBD-Pg-1.31/t/18data_sources.t~	2003-12-08 14:38:27.000000000 -0600
+--- DBD-Pg-1.31.new/t/18data_sources.t~	2003-12-08 14:40:15.000000000 -0600
+***************
+*** 1,7 ****
+  use strict;
+  use DBI;
+  use Test::More;
+- use Data::Dumper;
+  
+  if (defined $ENV{DBI_DSN}) {
+      plan tests => 1;
+--- 1,8 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+  
+  if (defined $ENV{DBI_DSN}) {
+      plan tests => 1;
+***************
+*** 9,11 ****
+--- 10,15 ----
+      plan skip_all => "DBI_DSN must be set: see the README file";
+  }
+  
++ my @sources = DBI->data_sources('Pg');
++ 
++ ok( @sources > 1, "must have at least data source if DBI_DSN is set" );
+diff -ru DBD-Pg-1.31/t/99_pod.t DBD-Pg-1.31.new/t/99_pod.t
+*** DBD-Pg-1.31/t/99_pod.t	2003-11-17 15:01:05.000000000 -0600
+--- DBD-Pg-1.31.new/t/99_pod.t	2003-12-08 14:43:48.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use Test::More;
+  eval "use Test::Pod 1.00";
+  plan skip_all => "Test::Pod 1.00 required for testing POD" if $@;
+Only in DBD-Pg-1.31.new/t: 99_pod.t~
+diff -ru DBD-Pg-1.31/t/99cleanup.t DBD-Pg-1.31.new/t/99cleanup.t
+*** DBD-Pg-1.31/t/99cleanup.t	2003-12-08 11:17:20.000000000 -0600
+--- DBD-Pg-1.31.new/t/99cleanup.t	2003-12-08 14:43:44.000000000 -0600
+***************
+*** 1,3 ****
+--- 1,5 ----
++ #!/usr/bin/perl -w
++ 
+  use strict;
+  use DBI;
+  use Test::More;
+Only in DBD-Pg-1.31.new/t: 99cleanup.t~

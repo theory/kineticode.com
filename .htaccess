@@ -1,0 +1,12 @@
+RedirectPermanent /services/index1.html http://www.kineticode.com/support/
+RedirectPermanent /services/support http://www.kineticode.com/support/technical
+RedirectPermanent /services/template_support http://www.kineticode.com/support/templating
+RedirectPermanent /about/index1.html http://www.kineticode.com/about/leadership
+RedirectPermanent /about/index2.html http://www.kineticode.com/about/contact
+RedirectPermanent /news/index1.html http://www.kineticode.com/news/announcements
+RedirectPermanent /news/index2.html http://www.kineticode.com/news/pr
+RedirectPermanent /successes/index1.html http://www.kineticode.com/successes/case_studies
+RedirectPermanent /bricolage/index1.html http://www.kineticode.com/bricolage/documentation
+RedirectPermanent /bricolage/index2.html http://www.kineticode.com/bricolage/downloads
+RedirectMatch permanent /news/(2.*) http://www.kineticode.com/news/pr/$1
+RedirectMatch permanent /successes/(2.*) http://www.kineticode.com/successes/case_studies/$1

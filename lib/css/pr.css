@@ -1,0 +1,117 @@
+body {
+    font-family: Georgia, Times Roman, Serif;
+    font-size: 12pt;
+    line-height: 25pt;
+    margin: 30pt;
+}
+
+p>q, a>q, blockquote>q, h2>q, h3>q, li>q, dt>q, strong>q, em>q {
+    quotes: "\201c" "\201d" "\2018" "\x2019"
+}
+
+h1 {
+    font-size: 14pt;
+    line-height: 18pt;
+    font-weight: bold;
+    text-align: center;
+    margin: 0pt;
+}
+
+h2 {
+    font-size: 12pt;
+    line-height:16pt;
+    font-weight: bold;
+    text-align: center;
+    font-style: italic;
+    margin-left: 0pt;
+    margin-right: 0pt;
+    margin-top: 15pt;
+    margin-bottom: 10pt;
+}
+
+h3 {
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 10pt;
+    margin-bottom: 0pt;
+    margin-left: 0pt;
+    margin-right: 0pt;
+}
+
+/* Use the <q> tag instead of entities once IE and Safari properly
+ * support it. */
+q {
+    quotes: "\201c" "\201d" "\2018" "\x2019"
+}
+
+p {
+    margin: 0pt;
+    text-indent: 18pt;
+}
+
+/* Can later be replaced by specific <person> tag below, once it is
+ * supported. */
+p.person {
+    text-align: right;
+    line-height: 16pt;
+    text-indent: 0pt;
+    margin-bottom: 30pt;
+}
+
+/* Not yet fully supported. Use <p class="person"> for now. */
+person {
+    text-align: right;
+    line-height: 16pt;
+    text-indent: 0pt;
+    margin-top: 0pt;
+    margin-left: 0pt;
+    margin-right: 0pt;
+    margin-bottom: 30pt;
+}
+
+p.first {
+    text-indent: 0pt;
+}
+
+p.footnote {
+    text-indent: 0pt;
+    font-size: 10pt;
+    line-height: 13pt;
+    margin-top: 12pt;
+}
+
+p.closer {
+    text-indent: 0pt;
+    text-align: center;
+}
+
+.dateline {
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: black;
+    background-color: transparent;
+}
+
+a:active {
+    color: black;
+    background-color: transparent;
+}
+
+a:visited {
+    color: black;
+     background-color: transparent;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.email {
+    font-style: italic;
+}

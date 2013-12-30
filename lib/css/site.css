@@ -1,0 +1,378 @@
+html, body {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    line-height: 18px;
+    margin: 0 0 20px 0;
+    background-color: white;
+    color: black;
+    width: 750px;
+    height: 100%;
+}
+
+p>q, a>q, blockquote>q, h2>q, h3>q, li>q, dt>q, strong>q, em>q {
+    quotes: "\201c" "\201d" "\2018" "\x2019"
+}
+
+a { text-decoration:none; }
+
+a:hover {
+    text-decoration:underline;
+}
+
+/* Use the <q> tag instead of entities once IE and Safari properly
+ * support it. */
+q {
+    quotes: "\201c" "\201d" "\2018" "\x2019"
+}
+
+img {
+    border: 0;
+}
+
+#banner {
+    background-color: #999966;
+    color: white;
+    margin: 0;
+    line-height: 0;
+    width: 750px;
+    height: 79px;
+}
+
+#topnav {
+    background-color: #bdb76b;
+    color: white;
+    height: 25px;
+    line-height: 25px;
+    margin: 0;
+    padding-left: 315px;
+    border-bottom: solid black 1px;
+}
+
+#topnav li {
+    display: inline;
+    line-height: 25px;
+    padding: 0 0 0 0;
+    margin: 0;
+    color: #cd2626;
+    background-color: transparent;
+    margin-right: 12px;
+}
+
+#topnav a:link {
+    color: white;
+    background-color: transparent;
+}
+
+#topnav a.current:link {
+    color: #cd2626;
+    background-color: transparent;
+}
+
+#topnav a:active {
+    color: #cd2626;
+    background-color: transparent;
+}
+
+#topnav a:visited {
+    color: white;
+    background-color: transparent;
+}
+
+#topnav a.current:visited {
+    color: #cd2626;
+    background-color: transparent;
+}
+
+#copyright {
+    font-size: 9px;
+    line-height: 14px;
+    margin: 20px 0 0 0;
+    padding-left: 202px;
+    width: 455px;
+}
+
+#content {
+    margin-left: 202px;
+    margin-top: 40px;
+    width: 455px;
+}
+
+#sidenav {
+    position: absolute;
+    top: 104px;
+    left: 0;
+    width: 144px;
+    padding: 24px 0 0 0;
+    text-align: right;
+    margin: 0 0 0 25px;
+}
+
+#sidenavlist {
+    border: 0;
+    border-bottom: solid #999966 1px;
+    padding: 0;
+    margin: 0;
+}
+
+#sidenavlist li {
+    list-style: none;
+    font-size: 11px;
+    line-height: 30px;
+    font-weight: normal;
+    color: #cd2626;
+    background-color: transparent;
+    margin: 0;
+    border-top: solid #999966 1px;
+    padding-right: 15px;
+}
+
+#sidenav address {
+    padding: 0;
+}
+
+#sidenav a:link {
+    color: black;
+    background-color: transparent;
+}
+
+#sidenav a:active {
+    color: #cd2626;
+    background-color: transparent;
+}
+
+#sidenav a:visited {
+    color: black;
+    background-color: transparent;
+}
+
+#sidenav a.ref:link {
+    color: #cd2626;
+    background-color: transparent;
+}
+
+#sidenav a.ref:visited {
+    color: #cd2626;
+    background-color: transparent;
+}
+
+#headlines {
+    position: absolute;
+    top: 110px;
+    left: 20px;
+    width: 147px;
+    padding-top: 35px;
+    margin: 0;
+    text-align: right;
+}
+
+/* Duplicates what's in body, but is required by IE on Windows. */
+#headlines p {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    line-height: 15px;
+    margin: 0 0 10px 0;
+}
+
+#headlines h3 {
+    font-size: 12px;
+    line-height: 22px;
+    font-weight: bold;
+    margin: 0;
+    color: #999966;
+    background-color: transparent;
+}
+
+#headlines a {
+    font-weight: bold;
+    font-size: 10px;
+}
+
+#headlines a:link {
+    color: #006666;
+    background-color: transparent;
+}
+
+#headlines a:active {
+    color: black;
+    background-color: transparent;
+}
+
+#headlines a:visited {
+    color: #006666;
+    background-color: transparent;
+}
+
+/* Duplicates what's in body, but is required by IE on Windows. */
+#content p, dt, dd li {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    line-height: 18px;
+    margin: 0;
+}
+
+#content p {
+    margin-bottom: 10px;
+}
+
+#content p.more {
+    text-align: right;
+}
+
+#content p.cite {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+#content p.footnote {
+    font-size: 9px;
+    line-height: 13px;
+    margin-bottom: 0;
+}
+
+#content p.closer {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+#content ul {
+    padding: 0 0 0 1em;
+    margin: 0 0 10px 0;
+    list-style-type: square;
+    list-style-position: outside;
+    clear: left;
+}
+
+#content li p {
+  margin: 0;
+}
+
+#content blockquote {
+    margin: 0;
+    font-style: italic;
+}
+
+#content blockquote p {
+    text-indent: -0.5em;
+}
+
+#content blockquote.topquote {
+    margin: 0;
+    font-weight: bold;
+    color: #cd2626;
+    background-color: transparent;
+}
+
+#content blockquote.topquote p {
+    font-size: 12px;
+    line-height: 20px;
+}
+
+#content .pullquote {
+  border-left: 10px solid #999966;
+  padding-left: 1em;
+}
+
+#content .pullquote blockquote {
+    margin: 0;
+    font-weight: bold;
+    color: #cd2626;
+    background-color: transparent;
+}
+.pullquote blockquote p:before { content: "\201c"; }
+.pullquote blockquote p:after {  content: "\201d"; }
+.pullquote p cite:before { content: "\2014"; }
+
+#content a {
+    font-weight: bold;
+}
+
+#content p a {
+    font-size: 10px;
+}
+
+#content a:link {
+    color: #006666;
+    background-color: transparent;
+}
+
+#content a:active {
+    color: black;
+    background-color: transparent;
+}
+
+#content a:visited {
+    color: #006666;
+    background-color: transparent;
+}
+
+#content h1 {
+    font-size: 14px;
+    line-height: 25px;
+    font-weight: bold;
+    margin: 0;
+    color: #999966;
+    background-color: transparent;
+}
+
+#content h2 {
+    font-size: 11px;
+    line-height: 22px;
+    font-weight: bold;
+    margin: 5px 0;
+    font-style: italic;
+}
+
+#content h3 {
+    font-size: 12px;
+    line-height: 22px;
+    font-weight: bold;
+    margin: 0;
+    color: #999966;
+    background-color: transparent;
+}
+
+#content h4 {
+    font-size: 11px;
+    line-height: 19px;
+    font-weight: bold;
+    margin: 0;
+    color: #999966;
+    background-color: transparent;
+}
+
+#content h5 {
+    font-size: 11px;
+    line-height: 18px;
+    font-weight: bold;
+    margin: 0 3px 0 0;
+    float: left;
+}
+
+#content h5:after {
+    content: ':';
+}
+
+#content .rellinks {
+    position: absolute;
+    left: 15px;
+    border-top: solid #bdb76b 3px;
+    border-left: 0;
+    border-bottom: 0;
+    border-right: solid #bdb76b 3px;
+    margin: 0 0 10px 10px;
+    padding: 15px;
+    width: 111px;
+    float: right;
+}
+
+#content .rellinks h4 {
+    line-height: 0;
+}
+
+#content .rellinks ul, #content .rellinks li {
+    padding: 0;
+    text-indent: -1em;
+    margin: 10px 0 0 0;
+    list-style-position: inside;
+    line-height: 22px;
+}
